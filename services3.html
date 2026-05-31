@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Services - Hope Horizon</title>
+  <!-- Font Awesome for clean, sharp, scaleable vector icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #024067;
+      --secondary: #00b4d8;
+      --accent: #e6f0f7;
+      --dark: #222222;
+      --light: #ffffff;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      --transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+      font-family: 'Poppins', sans-serif; 
+    }
+
+    body {
+      background: linear-gradient(rgba(240, 246, 250, 0.9), rgba(240, 246, 250, 0.95)), url('img2.jpg') no-repeat center center/cover fixed;
+      color: var(--dark);
+    }
+
+    /* Shared Standardized Global Header System */
+    .header { 
+      background: var(--primary); 
+      color: var(--light); 
+      position: relative; 
+      padding: 30px 5%; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      border-bottom: 4px solid var(--secondary); 
+      z-index: 10; 
+    }
+    
+    .header-content { text-align: center; }
+    .header-content h1 { font-size: 2.5rem; font-weight: 800; }
+    .header-content p { font-size: 1.1rem; color: var(--secondary); font-weight: 600; letter-spacing: 2px; }
+    
+    .logo-top-left, .logo-top-right { 
+      position: absolute; 
+      top: 50%; 
+      transform: translateY(-50%); 
+      height: 75px; 
+      width: 75px; 
+      border-radius: 50%; 
+      border: 2px solid var(--secondary); 
+    }
+    .logo-top-left { left: 5%; } 
+    .logo-top-right { right: 5%; }
+
+    /* Navigation Menu Container */
+    .menu-section { 
+      background: var(--light); 
+      box-shadow: var(--shadow); 
+      position: sticky; 
+      top: 0; 
+      z-index: 100; 
+    }
+    
+    .desktop-nav .nav-menu { 
+      display: flex; 
+      list-style: none; 
+      justify-content: center; 
+      gap: 15px; 
+      padding: 15px; 
+    }
+    
+    .nav-menu a { 
+      color: var(--primary); 
+      font-weight: 700; 
+      text-decoration: none; 
+      padding: 10px 24px; 
+      border-radius: 30px; 
+      transition: var(--transition); 
+    }
+    
+    .nav-menu li.active a, .nav-menu a:hover { 
+      background-color: var(--primary); 
+      color: var(--light); 
+    }
+    
+    .mobile-menu-btn { 
+      display: none; 
+      width: 100%; 
+      background: var(--primary); 
+      color: var(--light); 
+      border: none; 
+      padding: 15px; 
+      font-weight: 700; 
+      cursor: pointer;
+    }
+    
+    .mobile-nav { 
+      display: none; 
+      background: var(--light); 
+      list-style: none; 
+      padding: 10px 0; 
+    }
+    
+    .mobile-nav.active { display: block; }
+    
+    .mobile-nav a { 
+      display: block; 
+      padding: 12px 25px; 
+      color: var(--primary); 
+      text-decoration: none; 
+      font-weight: 700; 
+    }
+
+    /* Services Dynamic Dashboard Grid System */
+    .service-section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-top: 50px;
+      font-weight: 800;
+    }
+
+    .service-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      padding: 40px 5% 80px 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .p-box {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 35px 30px;
+      display: flex;
+      gap: 22px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 1px solid rgba(2, 64, 103, 0.05);
+    }
+
+    .p-box:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(2, 64, 103, 0.12);
+      border-color: var(--secondary);
+    }
+
+    /* Modern Icon Wrapper styling replacing old image bugs */
+    .icon-wrapper {
+      height: 70px;
+      width: 70px;
+      min-width: 70px;
+      border-radius: 14px;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon-wrapper i {
+      font-size: 1.8rem;
+      color: var(--primary);
+    }
+
+    .p-box:hover .icon-wrapper {
+      background: var(--primary);
+    }
+
+    .p-box:hover .icon-wrapper i {
+      color: var(--light);
+      transform: scale(1.05);
+      transition: var(--transition);
+    }
+
+    .para-container { flex: 1; }
+    
+    .para-container h3 {
+      color: var(--primary);
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .para-container p {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    /* Footer System */
+    footer { 
+      background: var(--primary); 
+      color: var(--light); 
+      padding: 60px 5% 30px 5%; 
+    }
+    
+    .footer-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+      gap: 40px; 
+      max-width: 1300px; 
+      margin: 0 auto 40px auto; 
+    }
+    
+    footer h3 { color: var(--secondary); font-size: 1.2rem; margin-bottom: 20px; }
+    
+    footer a { 
+      color: var(--light); 
+      text-decoration: none; 
+      display: block; 
+      margin-bottom: 12px; 
+      opacity: 0.85; 
+      transition: var(--transition); 
+    }
+    
+     footer ul { list-style: none; }
+    footer li {
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+      opacity: 0.85;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    footer a:hover { 
+      color: var(--secondary); 
+      transform: translateX(4px); 
+    }
+    
+    .copyright { 
+      text-align: center; 
+      border-top: 1px solid rgba(255,255,255,0.1); 
+      padding-top: 25px; 
+      font-size: 0.85rem; 
+      color: #aad7f4; 
+    }
+
+    @media (max-width: 992px) {
+      .header { padding: 25px 20px; flex-direction: column; gap: 15px; }
+      .logo-top-left, .logo-top-right { position: static; transform: none; height: 65px; width: 65px; }
+      .desktop-nav { display: none; }
+      .mobile-menu-btn { display: block; }
+      .service-container { grid-template-columns: 1fr; padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <img src="church.jpeg" alt="SDA Logo" class="logo-top-left">
+    <div class="header-content">
+      <h1>HOPE HORIZON ADVENTIST HEALTHCARE</h1>
+      <p>REFERRAL AND SPECIALIST MEDICAL CENTER</p>
+    </div>
+    <img src="logo.png" alt="Hospital Logo" class="logo-top-right">
+  </header>
+
+  <div class="menu-section">
+    <button class="mobile-menu-btn" onclick="toggleMenu()">☰ MENU</button>
+    <nav class="desktop-nav">
+      <ul class="nav-menu">
+        <li class="active"><a href="index.html">HOME</a></li>
+        <li><a href="about2.html">ABOUT US</a></li>
+        <li><a href="services3.html">SERVICES</a></li>
+        <li><a href="appointment2.html">APPOINTMENT</a></li>
+        <li><a href="contact2.html">HELP DESK</a></li>
+      </ul>
+    </nav>
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="index.html">HOME</a>
+      <a href="about2.html">ABOUT US</a>
+      <a href="services3.html">SERVICES</a>
+      <a href="appointment2.html">APPOINTMENT</a>
+      <a href="contact2.html">HELP DESK</a>
+    </nav>
+  </div>
+
+  <h2 class="service-section-title">Our Specialized Clinical Services</h2>
+
+  <main class="service-container">
+    <!-- Service 1 -->
+    <div class="p-box">
+      <div class="icon-wrapper">
+        <i class="fa-solid fa-user-doctor"></i>
+      </div>
+      <div class="para-container">
+        <h3>General Clinical Consultations</h3>
+        <p>Comprehensive baseline health validations, targeted internal evaluations, diagnostics mapping, and consistent health status monitoring pathways managed by experienced clinical practitioners.</p>
+      </div>
+    </div>
+
+    <!-- Service 2 -->
+    <div class="p-box">
+      <div class="icon-wrapper">
+        <i class="fa-solid fa-truck-medical"></i>
+      </div>
+      <div class="para-container">
+        <h3>24/7 Emergency & Critical Care</h3>
+        <p>Immediate medical stabilization protocols, intensive monitoring support frameworks, and accelerated acute trauma therapeutic configurations operating continuously around the clock.</p>
+      </div>
+    </div>
+
+    <!-- Service 3 -->
+    <div class="p-box">
+      <div class="icon-wrapper">
+        <i class="fa-solid fa-microscope"></i>
+      </div>
+      <div class="para-container">
+        <h3>Laboratory Diagnostics</h3>
+        <p>High-precision processing parameters across hematology, advanced clinical pathology profiles, regular health screen tracking, biochemical assays, and microscopic cultures.</p>
+      </div>
+    </div>
+
+    <!-- Service 4 -->
+    <div class="p-box">
+      <div class="icon-wrapper">
+        <i class="fa-solid fa-scissors"></i>
+      </div>
+      <div class="para-container">
+        <h3>Advanced Surgical Services</h3>
+        <p>Major, intermediate, and minor inpatient surgical operations performed inside highly sterile, advanced operating theaters engineered for optimal patient outcomes.</p>
+      </div>
+    </div>
+
+    <!-- Service 5 -->
+    <div class="p-box">
+      <div class="icon-wrapper">
+        <i class="fa-solid fa-baby-carriage"></i>
+      </div>
+      <div class="para-container">
+        <h3>Maternal & Child Health (RCH)</h3>
+        <p>Comprehensive antenatal and postnatal care pathways, routine child immunization tracking, safe delivery management, and targeted pediatric growth profiling.</p>
+      </div>
+    </div>
+
+    <!-- Service 6 -->
+    <div class="p-box">
+      <div class="icon-wrapper">
+        <i class="fa-solid fa-tooth"></i>
+      </div>
+      <div class="para-container">
+        <h3>Specialist Dental & Oral Care</h3>
+        <p>Advanced therapeutic oral interventions including restorative dentistry, root canal treatments, scaling, professional cleanings, and emergency maxillofacial consultations.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h3>Executive Leadership</h3>
+        <ul>
+          <li>Proprietor: Tabitha Harun</li>
+          <li>CEO: Kelvin Harun</li>
+          <li>HR Manager: Shania Moraisa</li>
+          <li>Medical Director: Debora Majura</li>
+          <li>IT Manager: Samwel Mgunda</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Our Objective</h3>
+        <p>Delivering holistic clinical solutions prioritizing physical rehabilitation, mental comfort, and structural wellness across all patient demographics.</p>
+      </div>
+      <div>
+        <h3>Contact Channels</h3>
+        <ul>
+          <li><i class="fas fa-phone"></i> +255 750 745 490</li>
+          <li><i class="fab fa-whatsapp"></i> +255 621 762 079</li>
+          <li><i class="fas fa-location-dot"></i> Arusha, Tanzania</li>
+          <li><i class="fab fa-tiktok"></i> Hope Horizon HealthCare</li>
+          <li><i class="fab fa-youtube"></i> Hope Horizon Healthcare</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Quick Access</h3>
+        <a href="index.html">Home</a>
+        <a href="about2.html">About Us</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="license.html">License</a>
+        <a href="contact2.html">Central Help Desk</a>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2026 Hope Horizon Adventist Healthcare — All Rights Reserved.
+    </div>
+  </footer>
+
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileNav').classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

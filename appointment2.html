@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Appointment - Hope Horizon</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #024067;
+      --secondary: #00b4d8;
+      --accent: #e6f0f7;
+      --dark: #222222;
+      --light: #ffffff;
+      --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body {
+      background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('img1.jpg') no-repeat center center/cover fixed;
+      color: var(--dark);
+    }
+
+    /* Standard Header Configuration */
+    .header { background: var(--primary); color: var(--light); position: relative; padding: 30px 5%; display: flex; justify-content: center; align-items: center; border-bottom: 4px solid var(--secondary); z-index: 10; }
+    .header-content { text-align: center; }
+    .header-content h1 { font-size: 2.5rem; font-weight: 800; }
+    .header-content p { font-size: 1.1rem; color: var(--secondary); font-weight: 600; letter-spacing: 2px; }
+    .logo-top-left, .logo-top-right { position: absolute; top: 50%; transform: translateY(-50%); height: 75px; width: 75px; border-radius: 50%; border: 2px solid var(--secondary); }
+    .logo-top-left { left: 5%; } .logo-top-right { right: 5%; }
+
+    /* Nav System Container */
+    .menu-section { background: var(--light); box-shadow: var(--shadow); position: sticky; top: 0; z-index: 100; }
+    .desktop-nav .nav-menu { display: flex; list-style: none; justify-content: center; gap: 15px; padding: 15px; }
+    .nav-menu a { color: var(--primary); font-weight: 700; text-decoration: none; padding: 10px 24px; border-radius: 30px; transition: var(--transition); }
+    .nav-menu li.active a, .nav-menu a:hover { background-color: var(--primary); color: var(--light); }
+    
+    .mobile-menu-btn { display: none; width: 100%; background: var(--primary); color: var(--light); border: none; padding: 15px; font-weight: 700; }
+    .mobile-nav { display: none; background: var(--light); list-style: none; padding: 10px 0; }
+    .mobile-nav.active { display: block; }
+    .mobile-nav a { display: block; padding: 12px 25px; color: var(--primary); text-decoration: none; font-weight: 700; }
+
+    /* Core Content Split Container */
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      width: 92%;
+      max-width: 1300px;
+      margin: 60px auto;
+      position: relative;
+      z-index: 5;
+    }
+
+    .contact-info, .contact-form {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-info h2, .contact-form h2 {
+      color: var(--primary);
+      font-size: 1.6rem;
+      margin-bottom: 25px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    /* Responsive Table Wrap */
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 500px;
+    }
+
+    th, td {
+      padding: 14px;
+      text-align: left;
+      font-size: 0.9rem;
+      border-bottom: 1px solid #eef2f5;
+    }
+
+    th {
+      background-color: var(--primary);
+      color: var(--light);
+      font-weight: 600;
+    }
+
+    tr:hover { background-color: var(--accent); }
+
+    /* Clean Input Styling */
+    form { display: flex; flex-direction: column; }
+    label { font-size: 0.85rem; font-weight: 700; margin-bottom: 6px; color: var(--primary); text-transform: uppercase; }
+    
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      background: var(--light);
+      transition: var(--transition);
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.15);
+    }
+
+    .sex-group { display: flex; gap: 20px; margin-bottom: 20px; padding: 5px 0; }
+    .sex-group label { display: flex; align-items: center; gap: 8px; cursor: pointer; text-transform: none; font-size: 0.95rem; }
+    .sex-group input { width: auto; margin: 0; }
+
+    button[type="submit"] {
+      background-color: var(--primary);
+      color: var(--light);
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(2, 64, 103, 0.2);
+      transition: var(--transition);
+    }
+
+    button[type="submit"]:hover {
+      background-color: #035385;
+      transform: translateY(-2px);
+    }
+
+    /* Footer Configurations */
+     footer ul { list-style: none; }
+    footer li {
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+      opacity: 0.85;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    footer { background: var(--primary); color: var(--light); padding: 60px 5% 30px 5%; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1300px; margin: 0 auto 40px auto; }
+    footer h3 { color: var(--secondary); font-size: 1.2rem; margin-bottom: 20px; }
+    footer a { color: var(--light); text-decoration: none; display: block; margin-bottom: 12px; opacity: 0.85; transition: var(--transition); }
+    footer a:hover { color: var(--secondary); transform: translateX(4px); }
+    .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px; font-size: 0.85rem; color: #aad7f4; }
+
+    @media (max-width: 1024px) {
+      .contact-container { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 992px) {
+      .header { padding: 25px 20px; flex-direction: column; gap: 15px; }
+      .logo-top-left, .logo-top-right { position: static; transform: none; height: 65px; width: 65px; }
+      .desktop-nav { display: none; }
+      .mobile-menu-btn { display: block; }
+      .contact-container { padding: 0; width: 100%; margin: 30px 0; border-radius: 0; }
+      .contact-info, .contact-form { border-radius: 0; padding: 30px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <img src="church.jpeg" alt="SDA Logo" class="logo-top-left">
+    <div class="header-content">
+      <h1>HOPE HORIZON ADVENTIST HEALTHCARE</h1>
+      <p>REFERRAL AND SPECIALIST MEDICAL CENTER</p>
+    </div>
+    <img src="logo.png" alt="Hospital Logo" class="logo-top-right">
+  </header>
+
+  <div class="menu-section">
+    <button class="mobile-menu-btn" onclick="toggleMenu()">☰ MENU</button>
+    <nav class="desktop-nav">
+      <ul class="nav-menu">
+        <li class="active"><a href="index.html">HOME</a></li>
+        <li><a href="about2.html">ABOUT US</a></li>
+        <li><a href="services3.html">SERVICES</a></li>
+        <li><a href="appointment2.html">APPOINTMENT</a></li>
+        <li><a href="contact2.html">HELP DESK</a></li>
+      </ul>
+    </nav>
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="index.html">HOME</a>
+      <a href="about2.html">ABOUT US</a>
+      <a href="services3.html">SERVICES</a>
+      <a href="appointment2.html">APPOINTMENT</a>
+      <a href="contact2.html">HELP DESK</a>
+    </nav>
+  </div>
+
+  <main class="contact-container">
+    <div class="contact-info">
+      <h2>Departmental Outpatient Schedules</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Clinical Track</th>
+              <th>Mon - Thu</th>
+              <th>Friday</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Surgical Operations</td>
+              <td>07:00 AM - 05:00 PM</td>
+              <td>08:00 AM - 01:30 PM</td>
+            </tr>
+            <tr>
+              <td>Laboratory Diagnostics</td>
+              <td>07:30 AM - 05:00 PM</td>
+              <td>08:30 AM - 01:30 PM</td>
+            </tr>
+            <tr>
+              <td>Physiotherapy Care</td>
+              <td>07:00 AM - 04:45 PM</td>
+              <td>08:00 AM - 01:00 PM</td>
+            </tr>
+            <tr>
+              <td>Clinical Consultations
+              </td>
+              <td>07:00 AM - 05:00 PM</td>
+              <td>08:00 AM - 01:30 PM</td>
+            </tr>
+            <tr>
+              <td>Maternal & Child Health</td>
+              <td>07:30 AM - 05:00 PM</td>
+              <td>08:30 AM - 01:30 PM</td>
+            </tr>
+            <tr>
+              <td>Dental & Oral Care</td>
+              <td>07:00 AM - 04:45 PM</td>
+              <td>08:00 AM - 01:00 PM</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h2>Book Patient Appointment</h2>
+      <form action="https://api.web3forms.com/submit" method="POST" id="appointmentForm">
+        <input type="hidden" name="access_key" value="f0f989f0-55f5-4a10-baee-a3fdef864f8f">
+
+        <label for="name">Patient Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter complete legal name" required>
+
+        <label>Biological Sex</label>
+        <div class="sex-group">
+          <label><input type="radio" name="sex" value="Male" required> Male</label>
+          <label><input type="radio" name="sex" value="Female" required> Female</label>
+        </div>
+
+        <label for="phone">Active Contact Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="e.g. +255..." required>
+
+        <label for="date">Target Date</label>
+        <input type="date" id="date" name="date" required>
+
+        <button type="submit">Confirm Allocation Request</button>
+      </form>
+    </div>
+  </main>
+
+ <footer>
+    <div class="footer-grid">
+      <div>
+        <h3>Executive Leadership</h3>
+        <ul>
+          <li>Proprietor: Tabitha Harun</li>
+          <li>CEO: Kelvin Harun</li>
+          <li>HR Manager: Shania Moraisa</li>
+          <li>Medical Director: Debora Majura</li>
+          <li>IT Manager: Samwel Mgunda</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Our Objective</h3>
+        <p>Delivering holistic clinical solutions prioritizing physical rehabilitation, mental comfort, and structural wellness across all patient demographics.</p>
+      </div>
+      <div>
+        <h3>Contact Channels</h3>
+        <ul>
+          <li><i class="fas fa-phone"></i> +255 750 745 490</li>
+          <li><i class="fab fa-whatsapp"></i> +255 621 762 079</li>
+          <li><i class="fas fa-location-dot"></i> Arusha, Tanzania</li>
+          <li><i class="fab fa-tiktok"></i> Hope Horizon HealthCare</li>
+          <li><i class="fab fa-youtube"></i> Hope Horizon Healthcare</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Quick Access</h3>
+        <a href="index.html">Home</a>
+        <a href="about2.html">About Us</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="license.html">License</a>
+        <a href="contact2.html">Central Help Desk</a>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2026 Hope Horizon Adventist Healthcare — All Rights Reserved.
+    </div>
+  </footer>
+
+
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileNav').classList.toggle('active');
+    }
+
+    document.getElementById('appointmentForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const payload = new FormData(this);
+      try {
+        const res = await fetch(this.action, { method: this.method, body: payload });
+        const data = await res.json();
+        if(data.success) {
+          alert("✅ Appointment successfully initialized inside central matrix.");
+          this.reset();
+        } else {
+          alert("❌ Operational error encountered during booking: " + data.message);
+        }
+      } catch(err) {
+        alert("⚠ Interrupted connection parameters detected. Verify status networks.");
+      }
+    });
+  </script>
+</body>
+</html>
