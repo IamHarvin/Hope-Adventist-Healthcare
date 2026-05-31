@@ -3,7 +3,7 @@
 A premium, multi-page web platform engineered for a modern referral and specialist medical center. This project features a clean, mobile-responsive UI/UX layout system, custom CSS interactive architectures, automated layout showcases, and a synchronized patient reservation dashboard.
 
 ## 🚀 Live Demonstration
-🔗 **Live Link:** [Deploying Live via GitHub Pages soon...]
+🔗 **Live Link**: https://iamharvin.github.io/Hope-Adentist-Healthcare/
 
 ---
 
