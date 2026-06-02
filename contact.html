@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Central Help Desk - Hope Horizon</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #024067;
+      --secondary: #00b4d8;
+      --accent: #e6f0f7;
+      --dark: #222222;
+      --light: #ffffff;
+      --footer-bg: #011625; 
+      --footer-cyan: #00b4d8; 
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      --card-shadow: 0 8px 24px rgba(2, 64, 103, 0.05);
+      --transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+      font-family: 'Poppins', sans-serif; 
+    }
+
+    html, body {
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden; /* Definitively prevents unwanted horizontal scrolling or gray side gaps */
+    }
+
+    body {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('help2.jpg') no-repeat center center/cover fixed;
+      color: var(--dark);
+    }
+
+    /* Standardized Global Header System */
+    .header { 
+      background: var(--primary); 
+      color: var(--light); 
+      position: relative; 
+      padding: 30px 5%; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      border-bottom: 4px solid var(--secondary); 
+      z-index: 10; 
+      width: 100%;
+      border-top: 2px solid #011625;
+    }
+    
+    .header-content { text-align: center; }
+    .header-content h1 { font-size: 2.5rem; font-weight: 800; text-transform: uppercase; }
+    .header-content p { font-size: 1.1rem; color: var(--secondary); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+    
+    .logo-top-left, .logo-top-right { 
+      position: absolute; 
+      top: 50%; 
+      transform: translateY(-50%); 
+      height: 75px; 
+      width: 75px; 
+      border-radius: 50%; 
+      border: 2px solid #011625;
+      object-fit: cover;
+    }
+    .logo-top-left { left: 5%; } 
+    .logo-top-right { right: 5%; }
+
+    /* Navigation Menu */
+    .menu-section { 
+      background: var(--primary);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      position: sticky; 
+      top: 0; 
+      z-index: 100; 
+      width: 100%;
+      border-bottom: 2px solid #011625;
+    }
+    
+    .desktop-nav .nav-menu { 
+      display: flex; 
+      list-style: none; 
+      justify-content: center; 
+      gap: 15px; 
+      padding: 15px; 
+    }
+    
+    .nav-menu a { 
+      color: var(--light); 
+      font-weight: 700; 
+      text-decoration: none; 
+      padding: 10px 24px; 
+      border-radius: 30px; 
+      transition: var(--transition); 
+    }
+    
+    .nav-menu li.active a, .nav-menu a:hover { 
+      background-color: var(--secondary); 
+      color: var(--light); 
+    }
+    
+    .mobile-menu-btn { 
+      display: none; 
+      width: 100%; 
+      background: var(--primary); 
+      color: var(--light); 
+      border: none; 
+      padding: 15px; 
+      font-size: 1.1rem;
+      font-weight: 700; 
+      cursor: pointer;
+    }
+    
+    .mobile-nav { 
+      display: none; 
+      background: var(--light); 
+      list-style: none; 
+      padding: 10px 0; 
+      text-align: center;
+    }
+    
+    .mobile-nav.active { display: block; }
+    
+    .mobile-nav a { 
+      display: block; 
+      padding: 12px 25px; 
+      color: var(--primary); 
+      text-decoration: none; 
+      font-weight: 700; 
+    }
+
+    /* Page Body Layout */
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      width: 92%;
+      max-width: 1300px;
+      margin: 60px auto;
+      position: relative;
+      z-index: 5;
+    }
+
+    .contact-form, .contact-info {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+      min-width: 0; /* Prevents container box blowout issues */
+    }
+
+    .contact-form h2, .contact-info h2 {
+      color: var(--primary);
+      font-size: 1.6rem;
+      margin-bottom: 25px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    form { display: flex; flex-direction: column; }
+    label { font-size: 0.85rem; font-weight: 700; margin-bottom: 6px; color: var(--primary); text-transform: uppercase; }
+    
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      background: var(--light);
+      transition: var(--transition);
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.15);
+    }
+
+    button[type="submit"] {
+      background-color: var(--primary);
+      color: var(--light);
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(2, 64, 103, 0.2);
+      transition: var(--transition);
+    }
+
+    button[type="submit"]:hover {
+      background-color: #035385;
+      transform: translateY(-2px);
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      font-size: 1rem;
+      color: #444;
+    }
+
+    .info-item i { color: var(--primary); font-size: 1.2rem; width: 25px; }
+
+    /* Production Footer System */
+    footer { 
+      background: var(--footer-bg); 
+      color: var(--light); 
+      padding: 50px 5% 25px 5%; 
+      width: 100%;
+    }
+    
+    .footer-grid { 
+      display: grid; 
+      grid-template-columns: repeat(4, 1fr); 
+      gap: 30px; 
+      max-width: 1300px; 
+      margin: 0 auto 35px auto; 
+    }
+    
+    .footer-col {
+      text-align: center; 
+    }
+    
+    footer h3 { 
+      color: var(--footer-cyan); 
+      font-size: 1.25rem; 
+      font-weight: 700;
+      margin-bottom: 18px; 
+    }
+    
+    footer p, footer .footer-link-item { 
+      color: var(--light); 
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin-bottom: 6px;
+      opacity: 0.9;
+    }
+    
+    footer a.footer-link-item {
+      text-decoration: none;
+      display: block;
+      transition: var(--transition);
+    }
+    
+    footer a.footer-link-item:hover {
+      color: var(--footer-cyan);
+    }
+    
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center; 
+      gap: 6px;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.92rem;
+      opacity: 0.9;
+    }
+    
+    .contact-item i {
+      width: 16px;
+      text-align: center;
+    }
+
+    .copyright-row { 
+      text-align: center; 
+      border-top: 1px solid #024067; 
+      padding-top: 20px; 
+      font-size: 0.88rem; 
+      color: var(--light);
+      opacity: 0.85;
+    }
+
+    /* RESPONSIVE OVERRIDES */
+    @media (max-width: 992px) {
+      .header { 
+        padding: 15px 3%; 
+        flex-direction: row !important; 
+        justify-content: space-between; 
+        align-items: center; 
+        gap: 12px; 
+      }
+      .header-content {
+        flex: 1;
+        text-align: center;
+      }
+      .header-content h1 { 
+        font-size: 1.1rem !important; 
+        line-height: 1.3;
+      }
+      .header-content p { 
+        font-size: 0.65rem !important; 
+        letter-spacing: 0.5px; 
+        margin-top: 4px;
+      }
+      .logo-top-left, .logo-top-right { 
+        position: static !important; 
+        transform: none !important; 
+        height: 50px !important; 
+        width: 50px !important; 
+        min-width: 50px !important; 
+        flex-shrink: 0;
+      }
+      
+      .desktop-nav { display: none; }
+      .mobile-menu-btn { display: block; }
+
+      .contact-container {
+        grid-template-columns: 1fr; /* Clean layout collapse stack */
+        margin: 20px auto;
+        gap: 25px;
+        width: 95%;
+        max-width: 100%;
+      }
+      .contact-form, .contact-info {
+        border-radius: 16px; /* Retain aesthetic corners */
+        padding: 25px 20px; 
+      }
+      .contact-form h2, .contact-info h2 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+      }
+
+      .footer-grid { 
+        grid-template-columns: 1fr; 
+        gap: 35px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <img src="church.jpeg" alt="SDA Logo" class="logo-top-left" onerror="this.src='https://via.placeholder.com/75?text=Logo'">
+    <div class="header-content">
+      <h1>Hope Horizon Adventist Healthcare</h1>
+      <p>Referral and Specialist Medical Center</p>
+    </div>
+    <img src="logo.png" alt="Hospital Logo" class="logo-top-right" onerror="this.src='https://via.placeholder.com/75?text=Logo'">
+  </header>
+
+  <div class="menu-section">
+    <button class="mobile-menu-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i> MENU</button>
+    <nav class="desktop-nav">
+      <ul class="nav-menu">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="about.html">ABOUT US</a></li>
+        <li><a href="service.html">SERVICES</a></li>
+        <li><a href="appointment.html">APPOINTMENT</a></li>
+        <li class="active"><a href="contact.html">HELP DESK</a></li>
+      </ul>
+    </nav>
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT US</a>
+      <a href="service.html">SERVICES</a>
+      <a href="appointment.html">APPOINTMENT</a>
+      <a href="contact.html">HELP DESK</a>
+    </nav>
+  </div>
+
+  <main class="contact-container">
+    <div class="contact-form">
+      <h2>Send Direct Message</h2>
+      <form action="https://api.web3forms.com/submit" method="POST" id="contactForm">
+        <input type="hidden" name="access_key" value="f0f989f0-55f5-4a10-baee-a3fdef864f8f">
+        
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        
+        <label for="message">Message Content</label>
+        <textarea id="message" name="message" rows="5" placeholder="Type communication info..." required></textarea>
+        
+        <button type="submit">Dispatch Message</button>
+      </form>
+    </div>
+
+    <div class="contact-info">
+      <h2>Core Information Desk</h2>
+      <div class="info-item"><i class="fas fa-envelope"></i> adventhopehealthcare24@gmail.com</div>
+      <div class="info-item"><i class="fab fa-whatsapp"></i> +255 621 762 079</div>
+      <div class="info-item"><i class="fas fa-fax"></i> +255 22 024 1303</div>
+      <div class="info-item"><i class="fas fa-location-dot"></i> Usa River, Arusha, Tanzania</div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>Executive Management</h3>
+        <p>Chief Executive Officer: Tabitha Harun</p>
+        <p>Chief Operating Officer: Samwel Mgunda</p>
+        <p>Chief Medical Officer: Rahma Ramadhan</p>
+        <p>Chief Nursing Officer: Shania Moraisa</p>
+        <p>Chief Financial Officer: Deborah Majura</p>
+        <p>Chief Technology Officer: Kelvin Harun</p>
+      </div>
+      <div class="footer-col">
+        <h3>Our Mission</h3>
+        <p style="max-width: 320px; margin: 0 auto; text-align: center;">
+          Delivering holistic clinical solutions prioritizing physical rehabilitation, mental comfort, and structural wellness across all patient demographics.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h3>Follow Us</h3>
+        <div class="contact-list">
+          <div class="contact-item"><i class="fas fa-phone"></i> +255 750 745 490</div>
+          <div class="contact-item"><i class="fab fa-whatsapp"></i> +255 621 762 079</div>
+          <div class="contact-item"><i class="fas fa-fax"></i> +255 22 024 1303</div>
+          <div class="contact-item"><i class="fas fa-location-dot"></i> Arusha, Tanzania</div>
+          <div class="contact-item"><i class="fab fa-tiktok"></i> Hope Horizon HealthCare</div>
+          <div class="contact-item"><i class="fab fa-youtube"></i> Hope Horizon Healthcare</div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <a href="index.html" class="footer-link-item">Home</a>
+        <a href="about.html" class="footer-link-item">About Us</a>
+        <a href="privacy.html" class="footer-link-item">Privacy Policy</a>
+        <a href="contact2.html" class="footer-link-item">Contact Us</a>
+        <a href="license.html" class="footer-link-item">License</a>
+      </div>
+    </div>
+    <div class="copyright-row">
+      © 2025 Hope Horizon Adventist Healthcare — All rights reserved
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileNav').classList.toggle('active');
+    }
+
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      try {
+        const res = await fetch(this.action, { method: this.method, body: new FormData(this) });
+        const data = await res.json();
+        if(data.success) {
+          alert("✅ Communications securely logged with support desk operators.");
+          this.reset();
+        } else {
+          alert("❌ Data rejected by processing endpoint: " + data.message);
+        }
+      } catch(err) {
+        alert("⚠ Terminal request routing initialization failed.");
+      }
+    });
+  </script>
+</body>
+</html>
