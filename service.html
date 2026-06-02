@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Medical Services - Hope Horizon</title>
-  <!-- Font Awesome for clean, sharp, scaleable vector icons -->
+  <title>Services — Hope Horizon Adventist Healthcare</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root {
@@ -13,7 +12,10 @@
       --accent: #e6f0f7;
       --dark: #222222;
       --light: #ffffff;
+      --footer-bg: #011625; 
+      --footer-cyan: #00b4d8; 
       --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      --card-shadow: 0 8px 24px rgba(2, 64, 103, 0.05);
       --transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
@@ -24,12 +26,13 @@
       font-family: 'Poppins', sans-serif; 
     }
 
-    body {
-      background: linear-gradient(rgba(240, 246, 250, 0.9), rgba(240, 246, 250, 0.95)), url('img2.jpg') no-repeat center center/cover fixed;
+   body {
+      background-color: #f8fbfd;
       color: var(--dark);
+      overflow-x: hidden;
     }
 
-    /* Shared Standardized Global Header System */
+    /* Standardized Global Header System */
     .header { 
       background: var(--primary); 
       color: var(--light); 
@@ -40,11 +43,12 @@
       align-items: center; 
       border-bottom: 4px solid var(--secondary); 
       z-index: 10; 
+       border-top: 2px solid #011625;
     }
     
     .header-content { text-align: center; }
-    .header-content h1 { font-size: 2.5rem; font-weight: 800; }
-    .header-content p { font-size: 1.1rem; color: var(--secondary); font-weight: 600; letter-spacing: 2px; }
+    .header-content h1 { font-size: 2.5rem; font-weight: 800; text-transform: uppercase; }
+    .header-content p { font-size: 1.1rem; color: var(--secondary); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
     
     .logo-top-left, .logo-top-right { 
       position: absolute; 
@@ -53,18 +57,20 @@
       height: 75px; 
       width: 75px; 
       border-radius: 50%; 
-      border: 2px solid var(--secondary); 
+      border: 2px solid #011625;
+      object-fit: cover;
     }
     .logo-top-left { left: 5%; } 
     .logo-top-right { right: 5%; }
 
-    /* Navigation Menu Container */
+    /* Navigation Menu */
     .menu-section { 
-      background: var(--light); 
-      box-shadow: var(--shadow); 
+      background: var(--primary);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
       position: sticky; 
       top: 0; 
       z-index: 100; 
+      border-bottom: 2px solid #011625;
     }
     
     .desktop-nav .nav-menu { 
@@ -76,7 +82,7 @@
     }
     
     .nav-menu a { 
-      color: var(--primary); 
+      color: var(--light); 
       font-weight: 700; 
       text-decoration: none; 
       padding: 10px 24px; 
@@ -85,7 +91,7 @@
     }
     
     .nav-menu li.active a, .nav-menu a:hover { 
-      background-color: var(--primary); 
+      background-color: var(--secondary); 
       color: var(--light); 
     }
     
@@ -96,6 +102,7 @@
       color: var(--light); 
       border: none; 
       padding: 15px; 
+      font-size: 1.1rem;
       font-weight: 700; 
       cursor: pointer;
     }
@@ -105,6 +112,7 @@
       background: var(--light); 
       list-style: none; 
       padding: 10px 0; 
+      text-align: center;
     }
     
     .mobile-nav.active { display: block; }
@@ -195,95 +203,153 @@
       color: #555;
     }
 
-    /* Footer System */
+    /* Production Footer System */
     footer { 
-      background: var(--primary); 
+      background: var(--footer-bg); 
       color: var(--light); 
-      padding: 60px 5% 30px 5%; 
+      padding: 50px 5% 25px 5%; 
     }
     
     .footer-grid { 
       display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-      gap: 40px; 
+      grid-template-columns: repeat(4, 1fr); 
+      gap: 30px; 
       max-width: 1300px; 
-      margin: 0 auto 40px auto; 
+      margin: 0 auto 35px auto; 
     }
     
-    footer h3 { color: var(--secondary); font-size: 1.2rem; margin-bottom: 20px; }
+    .footer-col {
+      text-align: center; 
+    }
     
-    footer a { 
+    footer h3 { 
+      color: var(--footer-cyan); 
+      font-size: 1.25rem; 
+      font-weight: 700;
+      margin-bottom: 18px; 
+    }
+    
+    footer p, footer .footer-link-item { 
       color: var(--light); 
-      text-decoration: none; 
-      display: block; 
-      margin-bottom: 12px; 
-      opacity: 0.85; 
-      transition: var(--transition); 
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin-bottom: 6px;
+      opacity: 0.9;
     }
     
-     footer ul { list-style: none; }
-    footer li {
-      margin-bottom: 12px;
-      font-size: 0.9rem;
-      opacity: 0.85;
+    footer a.footer-link-item {
+      text-decoration: none;
+      display: block;
+      transition: var(--transition);
+    }
+    
+    footer a.footer-link-item:hover {
+      color: var(--footer-cyan);
+    }
+    
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center; 
+      gap: 6px;
+    }
+    
+    .contact-item {
       display: flex;
       align-items: center;
-      gap: 10px;
-    }
-
-    footer a:hover { 
-      color: var(--secondary); 
-      transform: translateX(4px); 
+      gap: 8px;
+      font-size: 0.92rem;
+      opacity: 0.9;
     }
     
-    .copyright { 
+    .contact-item i {
+      width: 16px;
+      text-align: center;
+    }
+
+    .copyright-row { 
       text-align: center; 
-      border-top: 1px solid rgba(255,255,255,0.1); 
-      padding-top: 25px; 
-      font-size: 0.85rem; 
-      color: #aad7f4; 
+      border-top: 1px solid #024067; 
+      padding-top: 20px; 
+      font-size: 0.88rem; 
+      color: var(--light);
+      opacity: 0.85;
     }
 
     @media (max-width: 992px) {
-      .header { padding: 25px 20px; flex-direction: column; gap: 15px; }
-      .logo-top-left, .logo-top-right { position: static; transform: none; height: 65px; width: 65px; }
+      .header { 
+        padding: 15px 3%; 
+        flex-direction: row !important; 
+        justify-content: space-between; 
+        align-items: center; 
+        gap: 12px; 
+      }
+      .header-content {
+        flex: 1;
+        text-align: center;
+      }
+      .header-content h1 { 
+        font-size: 1.1rem !important; 
+        line-height: 1.3;
+      }
+      .header-content p { 
+        font-size: 0.65rem !important; 
+        letter-spacing: 0.5px; 
+        margin-top: 4px;
+      }
+      .logo-top-left, .logo-top-right { 
+        position: static !important; 
+        transform: none !important; 
+        height: 50px !important; 
+        width: 50px !important; 
+        min-width: 50px !important; 
+        flex-shrink: 0;
+      }
+      
       .desktop-nav { display: none; }
       .mobile-menu-btn { display: block; }
-      .service-container { grid-template-columns: 1fr; padding: 20px; }
+      .footer-grid { 
+        grid-template-columns: 1fr; 
+        gap: 35px;
+      }
     }
   </style>
 </head>
 <body>
 
+  <!-- Header -->
   <header class="header">
-    <img src="church.jpeg" alt="SDA Logo" class="logo-top-left">
+    <img src="church.jpeg" alt="SDA Logo" class="logo-top-left" onerror="this.src='https://via.placeholder.com/75?text=Logo'">
     <div class="header-content">
-      <h1>HOPE HORIZON ADVENTIST HEALTHCARE</h1>
-      <p>REFERRAL AND SPECIALIST MEDICAL CENTER</p>
+      <h1>Hope Horizon Adventist Healthcare</h1>
+      <p>Referral and Specialist Medical Center</p>
     </div>
-    <img src="logo.png" alt="Hospital Logo" class="logo-top-right">
+    <img src="logo.png" alt="Hospital Logo" class="logo-top-right" onerror="this.src='https://via.placeholder.com/75?text=Logo'">
   </header>
 
+  <!-- Navigation -->
   <div class="menu-section">
-    <button class="mobile-menu-btn" onclick="toggleMenu()">☰ MENU</button>
+    <button class="mobile-menu-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i> MENU</button>
     <nav class="desktop-nav">
       <ul class="nav-menu">
-        <li class="active"><a href="index.html">HOME</a></li>
-        <li><a href="about2.html">ABOUT US</a></li>
-        <li><a href="services3.html">SERVICES</a></li>
-        <li><a href="appointment2.html">APPOINTMENT</a></li>
-        <li><a href="contact2.html">HELP DESK</a></li>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="about.html">ABOUT US</a></li>
+        <li class="active"><a href="service.html">SERVICES</a></li>
+        <li><a href="appointment.html">APPOINTMENT</a></li>
+        <li><a href="contact.html">HELP DESK</a></li>
       </ul>
     </nav>
     <nav class="mobile-nav" id="mobileNav">
       <a href="index.html">HOME</a>
-      <a href="about2.html">ABOUT US</a>
-      <a href="services3.html">SERVICES</a>
-      <a href="appointment2.html">APPOINTMENT</a>
-      <a href="contact2.html">HELP DESK</a>
+      <a href="about.html">ABOUT US</a>
+      <a href="service.html">SERVICES</a>
+      <a href="appointment.html">APPOINTMENT</a>
+      <a href="contact.html">HELP DESK</a>
     </nav>
   </div>
 
+  <!-- Page Body Content -->
   <h2 class="service-section-title">Our Specialized Clinical Services</h2>
 
   <main class="service-container">
@@ -354,46 +420,49 @@
     </div>
   </main>
 
+
+  <!-- Footer System -->
   <footer>
     <div class="footer-grid">
-      <div>
-        <h3>Executive Leadership</h3>
-        <ul>
-          <li>Proprietor: Tabitha Harun</li>
-          <li>CEO: Kelvin Harun</li>
-          <li>HR Manager: Shania Moraisa</li>
-          <li>Medical Director: Debora Majura</li>
-          <li>IT Manager: Samwel Mgunda</li>
-        </ul>
+      <div class="footer-col">
+        <h3>Executive Management</h3>
+        <p>Chief Executive Officer: Tabitha Harun</p>
+        <p>Chief Operating Officer: Samwel Mgunda</p>
+        <p>Chief Medical Officer: Rahma Ramadhan</p>
+        <p>Chief Nursing Officer: Shania Moraisa</p>
+        <p>Chief Financial Officer: Deborah Majura</p>
+        <p>Chief Technology Officer: Kelvin Harun</p>
       </div>
-      <div>
-        <h3>Our Objective</h3>
-        <p>Delivering holistic clinical solutions prioritizing physical rehabilitation, mental comfort, and structural wellness across all patient demographics.</p>
+      <div class="footer-col">
+        <h3>Our Mission</h3>
+        <p style="max-width: 320px; margin: 0 auto; text-align: center;">
+          Delivering holistic clinical solutions prioritizing physical rehabilitation, mental comfort, and structural wellness across all patient demographics.
+        </p>
       </div>
-      <div>
-        <h3>Contact Channels</h3>
-        <ul>
-          <li><i class="fas fa-phone"></i> +255 750 745 490</li>
-          <li><i class="fab fa-whatsapp"></i> +255 621 762 079</li>
-          <li><i class="fas fa-location-dot"></i> Arusha, Tanzania</li>
-          <li><i class="fab fa-tiktok"></i> Hope Horizon HealthCare</li>
-          <li><i class="fab fa-youtube"></i> Hope Horizon Healthcare</li>
-        </ul>
+      <div class="footer-col">
+        <h3>Follow Us</h3>
+        <div class="contact-list">
+          <div class="contact-item"><i class="fas fa-phone"></i> +255 750 745 490</div>
+          <div class="contact-item"><i class="fab fa-whatsapp"></i> +255 621 762 079</div>
+          <div class="contact-item"><i class="fas fa-fax"></i> +255 22 024 1303</div>
+          <div class="contact-item"><i class="fas fa-location-dot"></i> Arusha, Tanzania</div>
+          <div class="contact-item"><i class="fab fa-tiktok"></i> Hope Horizon HealthCare</div>
+          <div class="contact-item"><i class="fab fa-youtube"></i> Hope Horizon Healthcare</div>
+        </div>
       </div>
-      <div>
-        <h3>Quick Access</h3>
-        <a href="index.html">Home</a>
-        <a href="about2.html">About Us</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="license.html">License</a>
-        <a href="contact2.html">Central Help Desk</a>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <a href="index.html" class="footer-link-item">Home</a>
+        <a href="about.html" class="footer-link-item">About Us</a>
+        <a href="privacy.html" class="footer-link-item">Privacy Policy</a>
+        <a href="contact2.html" class="footer-link-item">Contact Us</a>
+        <a href="license.html" class="footer-link-item">License</a>
       </div>
     </div>
-    <div class="copyright">
-      © 2026 Hope Horizon Adventist Healthcare — All Rights Reserved.
+    <div class="copyright-row">
+      © 2025 Hope Horizon Adventist Healthcare — All rights reserved
     </div>
   </footer>
-
 
   <script>
     function toggleMenu() {
